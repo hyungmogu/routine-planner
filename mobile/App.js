@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+import { AppProvider } from './components/Context';
+
 export default function App() {
   return (
     <AppProvider>
