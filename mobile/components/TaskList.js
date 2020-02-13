@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 class TaskList extends Component {
 
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.header}>
+                </View>
             </View>
         )
     }
@@ -14,7 +16,11 @@ class TaskList extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 200,
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        borderRadius: 10
+    },
+    header: {
+        backgroundColor: 'black'
     }
 });
 
