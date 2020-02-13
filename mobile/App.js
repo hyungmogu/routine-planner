@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { AppProvider } from './components/Context';
 import AppNavigator from './navigation/AppNavigator';
 
-
 export default function App() {
   return (
     <AppProvider>

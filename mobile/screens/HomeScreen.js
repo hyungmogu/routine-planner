@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, View } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
 import AddNewButton from '../components/AddNewButton';
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     container: {
-        flex: 1
+        flex: 1,
+        margin: 15
     }
 });
 

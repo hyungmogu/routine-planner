@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     header: {
-        backgroundColor: 'black'
+        backgroundColor: '#FF971D'
     }
 });
 
