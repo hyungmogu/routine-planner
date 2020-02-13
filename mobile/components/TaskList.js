@@ -5,12 +5,17 @@ class TaskList extends Component {
 
     render() {
         return (
-            <View></View>
+            <View style={styles.container}>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        height: 200,
+        backgroundColor: 'red'
+    }
 });
 
 export default TaskList;
