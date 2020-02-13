@@ -11,6 +11,7 @@ class TaskList extends Component {
                         <Text style={{fontSize: 20, color: 'white', padding: 15}}>Title</Text>
                     </View>
                     <View>
+
                     </View>
                 </View>
             </View>
@@ -25,7 +26,9 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     header: {
-        backgroundColor: '#FF971D'
+        backgroundColor: '#FF971D',
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10
     }
 });
 
