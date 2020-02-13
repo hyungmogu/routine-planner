@@ -7,6 +7,11 @@ class TaskList extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
+                    <View>
+                        <Text style={{fontSize: 20, color: 'white', padding: 15}}>Title</Text>
+                    </View>
+                    <View>
+                    </View>
                 </View>
             </View>
         )
