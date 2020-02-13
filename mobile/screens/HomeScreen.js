@@ -23,7 +23,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
     safeViewContainer: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: '#F9F6F7'
     },
     container: {
         flex: 1,
