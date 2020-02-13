@@ -34,7 +34,6 @@ export default React.forwardRef((props, ref) => (
             <HomeScreen
                 {...props}
                 appContext={appContext}
-                apiContext={apiContext}
                 ref={ref}
             />
         }
