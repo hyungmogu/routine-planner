@@ -4,6 +4,8 @@ import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { AppConsumer } from '../components/Context';
 import AddNewButton from '../components/AddNewButton';
 
+import TaskList from '../components/TaskList';
+
 class HomeScreen extends Component {
 
     render() {
@@ -11,6 +13,7 @@ class HomeScreen extends Component {
             <SafeAreaView style={styles.safeViewContainer}>
                 <AddNewButton onPress={() => navigate('AddNewChat')}/>
                 <ScrollView style={styles.container}>
+                    <TaskList/>
                 </ScrollView>
             </SafeAreaView>
         );
