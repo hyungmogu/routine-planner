@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { AppConsumer } from '../components/Context';
 import TaskListItem from './TaskListItem';
 import TaskListHeader from './TaskListHeader';
 import TaskListItemAddButton from './TaskListItemAddButton';
@@ -8,12 +9,19 @@ import TaskListItemAddButton from './TaskListItemAddButton';
 class TaskList extends Component {
 
     render() {
+        let tasks = this.props.appContext.tasks;
+
         return (
-            <View style={styles.container}>
-                <TaskListHeader/>
-                <TaskListItem/>
-                <TaskListItemAddButton/>
-            </View>
+            <React.Fragment>
+            { tasks.map((item, index) =>
+                    <View style={styles.container}>
+                        <TaskListHeader/>
+                        <TaskListItem/>
+                        <TaskListItemAddButton/>
+                    </View>
+                )
+            }
+            </React.Fragment>
         )
     }
 }
@@ -26,4 +34,14 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TaskList;
+export default React.forwardRef((props, ref) => (
+    <AppConsumer>
+        { appContext =>
+            <TaskList
+                {...props}
+                appContext={appContext}
+                ref={ref}
+            />
+        }
+    </AppConsumer>
+));

@@ -9,9 +9,11 @@ import TaskList from '../components/TaskList';
 class HomeScreen extends Component {
 
     render() {
+        let addNewTask = this.props.appContext.actions.addNewTask;
+
         return (
             <SafeAreaView style={styles.safeViewContainer}>
-                <TaskAddButton onPress={() => navigate('AddNewChat')}/>
+                <TaskAddButton onPress={addNewTask}/>
                 <ScrollView style={styles.container}>
                     <TaskList/>
                 </ScrollView>
