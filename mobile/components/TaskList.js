@@ -10,14 +10,16 @@ class TaskList extends Component {
 
     render() {
         let tasks = this.props.appContext.tasks;
-
+        let addNewTaskItem = this.props.appContext.actions.addNewTaskItem;
         return (
             <React.Fragment>
-            { tasks.map((item, index) =>
-                    <View key={index} style={styles.container}>
-                        <TaskListHeader itemKey={index}/>
-                        <TaskListItem/>
-                        <TaskListItemAddButton/>
+            { tasks.map((task, key) =>
+                    <View key={key} style={styles.container}>
+                        <TaskListHeader itemKey={key}/>
+                        {task.items.map((item, itemKey) =>
+                            <TaskListItem key={itemKey} itemKey={itemKey}/>
+                        )}
+                        <TaskListItemAddButton onPress={() => addNewTaskItem(key)}/>
                     </View>
                 )
             }
