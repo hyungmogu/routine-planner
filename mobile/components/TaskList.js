@@ -30,7 +30,10 @@ const styles = StyleSheet.create({
     container: {
         height: 200,
         backgroundColor: 'white',
-        borderRadius: 10
+        borderRadius: 10,
+        marginTop: 15,
+        marginLeft: 15,
+        marginRight: 15
     }
 });
 
