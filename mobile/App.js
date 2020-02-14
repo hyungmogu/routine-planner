@@ -10,9 +10,13 @@ export default class App extends Component {
     }
 
     handleAddNewTask = () => {
+        let newTask = {
+            items: []
+        };
+
         this.setState(prevState => {
             return {
-                tasks: [...prevState.tasks, {}]
+                tasks: [...prevState.tasks, newTask]
             }
         })
     }
@@ -29,13 +33,23 @@ export default class App extends Component {
         })
     }
 
+    handleAddNewTaskItem = (key) => {
+        let newTaskItem = {};
+
+        let tasks = [...this.state.tasks];
+        tasks[key].items.push(newTaskItem);
+
+        this.setState({tasks})
+    }
+
     render() {
         return (
             <AppProvider value={{
                 tasks: this.state.tasks,
                 actions: {
                     addNewTask: this.handleAddNewTask,
-                    deleteTask: this.handleDeleteTask
+                    deleteTask: this.handleDeleteTask,
+                    addNewTaskItem: this.handleAddNewTaskItem
                 }
             }}>
                 <AppNavigator/>
