@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity,TextInput } from 'react-native';
 
+import { CheckBox } from 'react-native-elements'
+
 import { Ionicons } from '@expo/vector-icons';
 
 class TaskList extends Component {
@@ -23,7 +25,8 @@ class TaskList extends Component {
                     </View>
                 </View>
                 <View>
-                    <View style={{padding: 15, flexDirection: 'row'}}>
+                    <View style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
+                        <CheckBox containerStyle={{padding: 0}}/>
                         <TextInput
                             style={{
                                 height: 40,
