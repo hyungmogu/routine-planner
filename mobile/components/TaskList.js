@@ -15,7 +15,7 @@ class TaskList extends Component {
             <React.Fragment>
             { tasks.map((task, key) =>
                     <View key={key} style={styles.container}>
-                        <TaskListHeader itemKey={key}/>
+                        <TaskListHeader taskKey={key}/>
                         {task.items.map((item, itemKey) =>
                             <TaskListItem key={itemKey} itemKey={itemKey}/>
                         )}

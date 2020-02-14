@@ -8,7 +8,7 @@ class TaskListHeader extends Component {
 
     render() {
         let deleteTask = this.props.appContext.actions.deleteTask;
-        let key = this.props.itemKey;
+        let key = this.props.taskKey;
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
