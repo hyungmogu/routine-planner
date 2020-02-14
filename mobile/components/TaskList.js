@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity,TextInput } from 'react-native';
-
-import { CheckBox } from 'react-native-elements'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
+
+import TaskListItem from './TaskListItem';
 
 class TaskList extends Component {
 
@@ -25,25 +25,7 @@ class TaskList extends Component {
                     </View>
                 </View>
                 <View>
-                    <View style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
-                        <CheckBox containerStyle={{padding: 0}}/>
-                        <TextInput
-                            style={{
-                                height: 40,
-                                borderColor: 'transparent',
-                                flex: 1,
-                                marginRight: 15
-                            }}
-                            placeholder="Add label here"
-                        />
-                        <TouchableOpacity>
-                          <Ionicons
-                              name="ios-trash"
-                              style={{color: 'black', alignSelf: 'flex-end'}}
-                              size={30}
-                          />
-                        </TouchableOpacity>
-                    </View>
+                    <TaskListItem/>
                 </View>
             </View>
         )
