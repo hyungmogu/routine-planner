@@ -61,6 +61,26 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
+    handleToggleCheckBox = (taskKey, itemKey) => {
+        let tasks = [...this.state.tasks];
+
+        if (!Array.isArray(tasks[taskKey].items)) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]['checked']) {
+            tasks[taskKey].items[itemKey]['checked'] = false;
+        }
+
+        tasks[taskKey].items[itemKey]['checked'] = !tasks[taskKey].items[itemKey]['checked'];
+
+        this.setState({tasks});
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -69,7 +89,8 @@ export default class App extends Component {
                     addNewTask: this.handleAddNewTask,
                     deleteTask: this.handleDeleteTask,
                     addNewTaskItem: this.handleAddNewTaskItem,
-                    deleteTaskItem: this.handleDeleteTaskItem
+                    deleteTaskItem: this.handleDeleteTaskItem,
+                    toggleCheckBox: this.handleToggleCheckBox
                 }
             }}>
                 <AppNavigator/>

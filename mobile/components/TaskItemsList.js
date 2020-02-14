@@ -12,6 +12,7 @@ class TaskItemsList extends Component {
         let taskKey = this.props.taskKey;
         let taskItems = this.props.appContext.tasks[taskKey].items;
 
+        let toggleCheckbox = this.props.appContext.actions.toggleCheckBox;
         let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
 
         return (
@@ -20,6 +21,7 @@ class TaskItemsList extends Component {
                     <View key={itemKey} style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
                         <CheckBox
                             containerStyle={{padding: 0}}
+                            checked={item.checked}
                             onPress={() => toggleCheckbox(taskKey, itemKey)}
                         />
                         <TextInput
