@@ -8,6 +8,7 @@ class TaskListHeader extends Component {
 
     render() {
         let deleteTask = this.props.appContext.actions.deleteTask;
+        let key = this.props.itemKey;
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
@@ -15,7 +16,7 @@ class TaskListHeader extends Component {
                 </View>
                 <View>
                     <TouchableOpacity
-                        onPress={() => deleteTask(this.props.key)}
+                        onPress={() => deleteTask(key)}
                     >
                         <Ionicons
                             name="ios-trash"

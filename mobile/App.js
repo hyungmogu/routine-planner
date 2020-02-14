@@ -18,6 +18,8 @@ export default class App extends Component {
     }
 
     handleDeleteTask = (key) => {
+        console.log('I am here');
+        console.log(key);
         this.setState(prevState => {
             let filteredItems = prevState.tasks.filter((item, index) => {
                 return index !== key;
