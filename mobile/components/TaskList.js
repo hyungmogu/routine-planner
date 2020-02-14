@@ -24,6 +24,15 @@ class TaskList extends Component {
                 </View>
                 <View>
                     <View style={{padding: 15, flexDirection: 'row'}}>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: 'transparent',
+                                flex: 1,
+                                marginRight: 15
+                            }}
+                            placeholder="Add label here"
+                        />
                         <TouchableOpacity>
                           <Ionicons
                               name="ios-trash"
