@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
-import TaskListItem from './TaskListItem';
+import TaskItemsList from './TaskItemsList';
 import TaskListHeader from './TaskListHeader';
 import TaskListItemAddButton from './TaskListItemAddButton';
 
@@ -16,9 +16,7 @@ class TaskList extends Component {
             { tasks.map((task, key) =>
                     <View key={key} style={styles.container}>
                         <TaskListHeader taskKey={key}/>
-                        {task.items.map((item, itemKey) =>
-                            <TaskListItem key={itemKey} itemKey={itemKey}/>
-                        )}
+                        <TaskItemsList taskKey={key}/>
                         <TaskListItemAddButton onPress={() => addNewTaskItem(key)}/>
                     </View>
                 )
