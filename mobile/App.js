@@ -47,6 +47,20 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
+    handleDeleteTaskItem = (taskKey, itemKey) => {
+        let tasks = [...this.state.tasks];
+
+        if (!Array.isArray(tasks[taskKey].items)) {
+            return;
+        }
+
+        tasks[taskKey].items = tasks[taskKey].items.filter((item, index) => {
+            return index !== itemKey;
+        });
+
+        this.setState({tasks});
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -54,7 +68,8 @@ export default class App extends Component {
                 actions: {
                     addNewTask: this.handleAddNewTask,
                     deleteTask: this.handleDeleteTask,
-                    addNewTaskItem: this.handleAddNewTaskItem
+                    addNewTaskItem: this.handleAddNewTaskItem,
+                    deleteTaskItem: this.handleDeleteTaskItem
                 }
             }}>
                 <AppNavigator/>

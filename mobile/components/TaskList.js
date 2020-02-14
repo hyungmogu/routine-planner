@@ -14,13 +14,12 @@ class TaskList extends Component {
         return (
             <React.Fragment>
             { tasks.map((task, key) =>
-                    <View key={key} style={styles.container}>
-                        <TaskListHeader taskKey={key}/>
-                        <TaskItemsList taskKey={key}/>
-                        <TaskListItemAddButton onPress={() => addNewTaskItem(key)}/>
-                    </View>
-                )
-            }
+                <View key={key} style={styles.container}>
+                    <TaskListHeader taskKey={key}/>
+                    <TaskItemsList taskKey={key}/>
+                    <TaskListItemAddButton onPress={() => addNewTaskItem(key)}/>
+                </View>
+            )}
             </React.Fragment>
         )
     }

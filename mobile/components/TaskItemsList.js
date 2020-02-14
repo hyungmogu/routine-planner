@@ -12,6 +12,8 @@ class TaskItemsList extends Component {
         let taskKey = this.props.taskKey;
         let taskItems = this.props.appContext.tasks[taskKey].items;
 
+        let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
+
         return (
             <React.Fragment>
                 {taskItems.map((item, itemKey) =>
@@ -26,7 +28,7 @@ class TaskItemsList extends Component {
                             }}
                             placeholder="Add label here"
                         />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => deleteTaskItem(taskKey, itemKey)}>
                             <Ionicons
                                 name="ios-trash"
                                 style={{color: 'black', alignSelf: 'flex-end'}}
