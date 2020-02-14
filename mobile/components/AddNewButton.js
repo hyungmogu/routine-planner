@@ -11,7 +11,7 @@ class AddNewButton extends Component {
 
         return (
             <TouchableOpacity style={styles.button} onPress={onPress}>
-                <Ionicons name="ios-add" size={50}/>
+                <Ionicons name="ios-add" size={50} style={{color: 'white'}}/>
             </TouchableOpacity>
         );
     }
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     button: {
         position: 'absolute',
         zIndex: 1,
-        backgroundColor: '#E2E2E2',
+        backgroundColor: '#FF971D',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
