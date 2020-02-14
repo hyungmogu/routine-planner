@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import update from 'immutability-helper';
-
 import { AppProvider } from './components/Context';
 import AppNavigator from './navigation/AppNavigator';
 
@@ -46,13 +44,7 @@ export default class App extends Component {
 
         tasks[key].items.push(newTaskItem);
 
-        // this.setState({
-        //     tasks: update(this.state.tasks, {[key]: {items: {$push: [newTaskItem]}}})
-        // })
-
         this.setState({tasks});
-
-        console.log(this.state.tasks);
     }
 
     render() {
