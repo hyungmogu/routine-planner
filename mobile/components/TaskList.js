@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import TaskListItem from './TaskListItem';
 import TaskListHeader from './TaskListHeader';
+import TaskListItemAddButton from './TaskListItemAddButton';
 
 class TaskList extends Component {
 
@@ -11,6 +12,7 @@ class TaskList extends Component {
             <View style={styles.container}>
                 <TaskListHeader/>
                 <TaskListItem/>
+                <TaskListItemAddButton/>
             </View>
         )
     }
