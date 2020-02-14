@@ -30,7 +30,6 @@ class TaskList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 200,
         backgroundColor: 'white',
         borderRadius: 10,
         marginTop: 15,
