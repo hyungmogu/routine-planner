@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity,TextInput } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,6 +17,17 @@ class TaskList extends Component {
                           <Ionicons
                               name="ios-trash"
                               style={{color: 'white', alignSelf: 'flex-end'}}
+                              size={30}
+                          />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View>
+                    <View style={{padding: 15, flexDirection: 'row'}}>
+                        <TouchableOpacity>
+                          <Ionicons
+                              name="ios-trash"
+                              style={{color: 'black', alignSelf: 'flex-end'}}
                               size={30}
                           />
                         </TouchableOpacity>
