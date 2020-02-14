@@ -6,8 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 class TaskListItemAddButton extends Component {
 
     render() {
+        const {
+            onPress
+        } = this.props;
+
         return (
-            <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={onPress}>
                 <Ionicons
                     name="ios-add"
                     style={{marginRight: 15}}

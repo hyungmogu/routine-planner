@@ -3,7 +3,7 @@ import { StyleSheet , TouchableOpacity} from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
-class AddNewButton extends Component {
+class TaskAddButton extends Component {
     render() {
         const {
             onPress
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddNewButton;
+export default TaskAddButton;

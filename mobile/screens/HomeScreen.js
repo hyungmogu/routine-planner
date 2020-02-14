@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, View } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
-import AddNewButton from '../components/AddNewButton';
+import TaskAddButton from '../components/TaskAddButton';
 
 import TaskList from '../components/TaskList';
 
@@ -11,7 +11,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.safeViewContainer}>
-                <AddNewButton onPress={() => navigate('AddNewChat')}/>
+                <TaskAddButton onPress={() => navigate('AddNewChat')}/>
                 <ScrollView style={styles.container}>
                     <TaskList/>
                 </ScrollView>
