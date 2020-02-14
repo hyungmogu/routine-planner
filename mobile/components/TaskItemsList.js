@@ -18,7 +18,10 @@ class TaskItemsList extends Component {
             <React.Fragment>
                 {taskItems.map((item, itemKey) =>
                     <View key={itemKey} style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
-                        <CheckBox containerStyle={{padding: 0}}/>
+                        <CheckBox
+                            containerStyle={{padding: 0}}
+                            onPress={() => toggleCheckbox(taskKey, itemKey)}
+                        />
                         <TextInput
                             style={{
                                 height: 40,
