@@ -17,12 +17,25 @@ export default class App extends Component {
         })
     }
 
+    handleDeleteTask = (key) => {
+        this.setState(prevState => {
+            let filteredItems = prevState.tasks.filter((item, index) => {
+                return index !== key;
+            });
+
+            return {
+                tasks: filteredItems
+            }
+        })
+    }
+
     render() {
         return (
             <AppProvider value={{
                 tasks: this.state.tasks,
                 actions: {
-                    addNewTask: this.handleAddNewTask
+                    addNewTask: this.handleAddNewTask,
+                    deleteTask: this.handleDeleteTask
                 }
             }}>
                 <AppNavigator/>

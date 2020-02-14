@@ -15,7 +15,7 @@ class TaskList extends Component {
             <React.Fragment>
             { tasks.map((item, index) =>
                     <View key={index} style={styles.container}>
-                        <TaskListHeader/>
+                        <TaskListHeader key={index}/>
                         <TaskListItem/>
                         <TaskListItemAddButton/>
                     </View>

@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
+import { AppConsumer } from '../components/Context';
 import { Ionicons } from '@expo/vector-icons';
 
 class TaskListHeader extends Component {
 
     render() {
+        let deleteTask = this.props.appContext.actions.deleteTask;
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
                     <Text style={{fontSize: 20, color: 'white'}}>Title</Text>
                 </View>
                 <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => deleteTask(this.props.key)}
+                    >
                         <Ionicons
                             name="ios-trash"
                             style={{color: 'white', alignSelf: 'flex-end'}}
@@ -35,4 +39,15 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TaskListHeader;
+
+export default React.forwardRef((props, ref) => (
+    <AppConsumer>
+        { appContext =>
+            <TaskListHeader
+                {...props}
+                appContext={appContext}
+                ref={ref}
+            />
+        }
+    </AppConsumer>
+));
