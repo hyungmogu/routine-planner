@@ -22,6 +22,7 @@ class TaskItemsList extends Component {
                         <CheckBox
                             containerStyle={{padding: 0}}
                             checked={item.checked}
+                            checkedColor='black'
                             onPress={() => toggleCheckbox(taskKey, itemKey)}
                         />
                         <TextInput
