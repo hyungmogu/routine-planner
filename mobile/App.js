@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Vibration } from 'react-native';
 import { Notifications } from 'expo';
 
 import { AppProvider } from './components/Context';
@@ -6,8 +7,20 @@ import AppNavigator from './navigation/AppNavigator';
 
 export default class App extends Component {
 
+    vibrationDuration = 2000;
+
     state = {
         tasks: []
+    }
+
+    componentDidMount() {
+        this.notificationListener = Notifications.addListener(() => {
+            Vibration.vibrate(this.vibrationDuration, true);
+        });
+    }
+
+    componentWillUnmount() {
+        this.notificationListener.remove();
     }
 
     handleAddNewTask = () => {
