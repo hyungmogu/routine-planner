@@ -32,7 +32,7 @@ export default class App extends Component {
 
     loadData = async () => {
         try {
-            const value = await AsyncStorage.getItem('tasks');
+            const value = await AsyncStorage.getItem('@TimeManagement:tasks');
             if(value !== null) {
                 tasks = JSON.parse(value);
 
@@ -142,7 +142,7 @@ export default class App extends Component {
     handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
 
         let tasks = [...this.state.tasks];
-        let unixTimestamp = parseInt(value.nativeEvent.timestamp / 1000);
+        let targetTimestamp = value.nativeEvent.timestamp;
 
         if (!Array.isArray(tasks[taskKey].items)) {
             return;
@@ -158,7 +158,15 @@ export default class App extends Component {
         }
 
         tasks[taskKey].items[itemKey]['showPicker'] = false;
-        tasks[taskKey].items[itemKey]['timestamp'] = unixTimestamp;
+        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(targetTimestamp / 1000);
+
+        let currentUnixTimestamp = new Date().getTime();
+        if (targetTimestamp <= currentUnixTimestamp) {
+            let day = 24 * 60 * 60;
+            targetTimestamp += day;
+        }
+
+        let scheduledTimestamp = currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp);
 
         tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
             title: 'Time Management',
@@ -168,7 +176,8 @@ export default class App extends Component {
                 _displayInForeground: true
             }
         }, {
-            time: unixTimestamp
+            time: scheduledTimestamp,
+            repeat: 'day'
         });
 
         this.setState({tasks});
@@ -177,7 +186,7 @@ export default class App extends Component {
     storeData = async () => {
         try {
             let json = JSON.stringify(this.state.tasks);
-            await AsyncStorage.setItem('tasks', json);
+            await AsyncStorage.setItem('@TimeManagement:tasks', json);
         } catch (e) {
             console.warn('Error occurred while saving data: ' + e);
         }
