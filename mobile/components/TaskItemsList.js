@@ -15,6 +15,10 @@ class TaskItemsList extends Component {
         let ampm = (hours >= 12) ? "PM" : "AM";
         let minutes = dateTime.getMinutes();
 
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+
         if (hours > 12) {
             hours -= 12;
         } else if (hours === 0) {

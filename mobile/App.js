@@ -28,7 +28,7 @@ export default class App extends Component {
 
     loadData = async () => {
         try {
-            const value = await AsyncStorage.getItem('tasks')
+            const value = await AsyncStorage.getItem('tasks');
             if(value !== null) {
                 tasks = JSON.parse(value);
 
@@ -36,15 +36,6 @@ export default class App extends Component {
             }
         } catch(e) {
             return;
-        }
-    }
-
-    storeData = async () => {
-        try {
-            let json = JSON.stringify(this.state.tasks);
-            await AsyncStorage.setItem('tasks', json)
-        } catch (e) {
-            console.warn('Error occurred while saving data: ' + e);
         }
     }
 
@@ -157,7 +148,6 @@ export default class App extends Component {
             return;
         }
 
-        // clear prior notification
         let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
         if (notificationId) {
             Notifications.cancelScheduledNotificationAsync(notificationId);
@@ -179,6 +169,15 @@ export default class App extends Component {
 
         this.storeData();
         this.setState({tasks});
+    }
+
+    storeData = async () => {
+        try {
+            let json = JSON.stringify(this.state.tasks);
+            await AsyncStorage.setItem('tasks', json);
+        } catch (e) {
+            console.warn('Error occurred while saving data: ' + e);
+        }
     }
 
     render() {
