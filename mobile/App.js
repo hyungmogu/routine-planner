@@ -135,7 +135,7 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
-    handleUpdateAlarm = (taskKey, itemKey, item, value) => {
+    handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
 
         let tasks = [...this.state.tasks];
         let unixTimestamp = parseInt(value.nativeEvent.timestamp / 1000);
@@ -156,7 +156,7 @@ export default class App extends Component {
         tasks[taskKey].items[itemKey]['showPicker'] = false;
         tasks[taskKey].items[itemKey]['timestamp'] = unixTimestamp;
 
-        tasks[taskKey].items[itemKey]['notificationId'] = Notifications.scheduleLocalNotificationAsync({
+        tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
             title: 'Time Management',
             body: item.name || 'Scheduled event',
             ios: {
@@ -165,10 +165,12 @@ export default class App extends Component {
             }
         }, {
             time: unixTimestamp
-        })
+        });
 
         this.storeData();
         this.setState({tasks});
+
+        console.log(this.state.tasks);
     }
 
     storeData = async () => {
