@@ -29,6 +29,7 @@ class TaskItemsList extends Component {
         let taskKey = this.props.taskKey;
         let taskItems = this.props.appContext.tasks[taskKey].items;
 
+        let toggleTimePicker = this.props.appContext.actions.toggleTimePicker;
         let toggleCheckbox = this.props.appContext.actions.toggleCheckBox;
         let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
 
@@ -54,6 +55,7 @@ class TaskItemsList extends Component {
                             />
 
                             <TouchableOpacity
+                                onPress={() => toggleTimePicker(taskKey, itemKey)}
                                 style={{
                                     marginRight:25
                                 }}
@@ -69,7 +71,7 @@ class TaskItemsList extends Component {
                                 />
                             </TouchableOpacity>
                         </View>
-                        { item.show ?
+                        { item.showPicker ?
                                 <View>
                                     <DateTimePicker
                                         testID={"dateTimePicker-" + itemKey}

@@ -85,6 +85,26 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
+    handleToggleTimePicker = (taskKey, itemKey) => {
+        let tasks = [...this.state.tasks];
+
+        if (!Array.isArray(tasks[taskKey].items)) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]['showPicker']) {
+            tasks[taskKey].items[itemKey]['showPicker'] = false;
+        }
+
+        tasks[taskKey].items[itemKey]['showPicker'] = !tasks[taskKey].items[itemKey]['showPicker'];
+
+        this.setState({tasks});
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -94,7 +114,8 @@ export default class App extends Component {
                     deleteTask: this.handleDeleteTask,
                     addNewTaskItem: this.handleAddNewTaskItem,
                     deleteTaskItem: this.handleDeleteTaskItem,
-                    toggleCheckBox: this.handleToggleCheckBox
+                    toggleCheckBox: this.handleToggleCheckBox,
+                    toggleTimePicker: this.handleToggleTimePicker
                 }
             }}>
                 <AppNavigator/>
