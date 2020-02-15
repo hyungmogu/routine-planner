@@ -119,6 +119,7 @@ export default class App extends Component {
             return;
         }
 
+        tasks[taskKey].items[itemKey]['showPicker'] = false;
         tasks[taskKey].items[itemKey]['timestamp'] = unixTimestamp;
 
         this.setState({tasks});
@@ -130,8 +131,7 @@ export default class App extends Component {
                 _displayInForeground: true
             }
         }, {
-            time: unixTimestamp,
-            repeat: 'day'
+            time: unixTimestamp
         })
     }
 
