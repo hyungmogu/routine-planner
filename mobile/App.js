@@ -22,6 +22,10 @@ export default class App extends Component {
         });
     }
 
+    componentDidUpdate() {
+        this.storeData();
+    }
+
     componentWillUnmount() {
         this.notificationListener.remove();
     }
@@ -49,7 +53,7 @@ export default class App extends Component {
             return {
                 tasks: [...prevState.tasks, newTask]
             }
-        })
+        });
     }
 
     handleDeleteTask = (key) => {
@@ -61,7 +65,7 @@ export default class App extends Component {
             return {
                 tasks: filteredItems
             }
-        })
+        });
     }
 
     handleAddNewTaskItem = (key) => {
@@ -93,7 +97,6 @@ export default class App extends Component {
         });
 
         this.setState({tasks});
-        this.storeData();
     }
 
     handleToggleCheckBox = (taskKey, itemKey) => {
@@ -168,7 +171,6 @@ export default class App extends Component {
             time: unixTimestamp
         });
 
-        this.storeData();
         this.setState({tasks});
     }
 
