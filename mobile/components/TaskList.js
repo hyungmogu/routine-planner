@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         borderRadius: 10,
-        marginTop: 15,
+        marginBottom: 15,
         marginLeft: 15,
         marginRight: 15
     }

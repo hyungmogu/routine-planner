@@ -183,6 +183,22 @@ export default class App extends Component {
         }
     }
 
+    handleUpdateTaskItemText = (taskKey, itemKey, text) => {
+        let tasks = [...this.state.tasks];
+
+        if (!Array.isArray(tasks[taskKey].items)) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]) {
+            return;
+        }
+
+        tasks[taskKey].items[itemKey]['label'] = text;
+
+        this.setState({tasks});
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -194,7 +210,8 @@ export default class App extends Component {
                     deleteTaskItem: this.handleDeleteTaskItem,
                     toggleCheckBox: this.handleToggleCheckBox,
                     toggleTimePicker: this.handleToggleTimePicker,
-                    updateAlarm: this.handleUpdateAlarm
+                    updateAlarm: this.handleUpdateAlarm,
+                    updateTaskItemText: this.handleUpdateTaskItemText
                 }
             }}>
                 <AppNavigator/>
