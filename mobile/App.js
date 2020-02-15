@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Notifications } from 'expo';
 
 import { AppProvider } from './components/Context';
 import AppNavigator from './navigation/AppNavigator';
@@ -105,9 +106,10 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
-    handleUpdateTimestamp = (taskKey, itemKey, value) => {
+    handleUpdateAlarm = (taskKey, itemKey, item, value) => {
 
         let tasks = [...this.state.tasks];
+        let unixTimestamp = parseInt(value.nativeEvent.timestamp / 1000);
 
         if (!Array.isArray(tasks[taskKey].items)) {
             return;
@@ -117,10 +119,20 @@ export default class App extends Component {
             return;
         }
 
-        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(value.nativeEvent.timestamp / 1000);
+        tasks[taskKey].items[itemKey]['timestamp'] = unixTimestamp;
 
         this.setState({tasks});
-
+        Notifications.scheduleLocalNotificationAsync({
+            title: 'Time Management',
+            body: item.name || 'Scheduled event',
+            ios: {
+                sound: true,
+                _displayInForeground: true
+            }
+        }, {
+            time: unixTimestamp,
+            repeat: 'day'
+        })
     }
 
     render() {
@@ -134,7 +146,7 @@ export default class App extends Component {
                     deleteTaskItem: this.handleDeleteTaskItem,
                     toggleCheckBox: this.handleToggleCheckBox,
                     toggleTimePicker: this.handleToggleTimePicker,
-                    updateTimestamp: this.handleUpdateTimestamp
+                    updateAlarm: this.handleUpdateAlarm
                 }
             }}>
                 <AppNavigator/>

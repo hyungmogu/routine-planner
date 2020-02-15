@@ -5,7 +5,6 @@ import { CheckBox } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
 import { AppConsumer } from '../components/Context';
 
 class TaskItemsList extends Component {
@@ -32,7 +31,7 @@ class TaskItemsList extends Component {
         let toggleTimePicker = this.props.appContext.actions.toggleTimePicker;
         let toggleCheckbox = this.props.appContext.actions.toggleCheckBox;
         let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
-        let updateTimestamp = this.props.appContext.actions.updateTimestamp;
+        let updateAlarm = this.props.appContext.actions.updateAlarm;
 
         return (
             <React.Fragment>
@@ -80,7 +79,7 @@ class TaskItemsList extends Component {
                                         mode={'time'}
                                         is24Hour={true}
                                         display="default"
-                                        onChange={(val) => updateTimestamp(taskKey, itemKey, val)}
+                                        onChange={(val) => updateAlarm(taskKey, itemKey, item, val)}
                                     />
                                 </View>
                             :
