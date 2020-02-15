@@ -35,38 +35,50 @@ class TaskItemsList extends Component {
         return (
             <React.Fragment>
                 {taskItems.map((item, itemKey) =>
-                    <View key={itemKey} style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
-                        <CheckBox
-                            containerStyle={{padding: 0}}
-                            checked={item.checked}
-                            checkedColor='black'
-                            onPress={() => toggleCheckbox(taskKey, itemKey)}
-                        />
-                        <TextInput
-                            style={{
-                                height: 40,
-                                borderColor: 'transparent',
-                                flex: 1,
-                                marginRight: 15
-                            }}
-                            placeholder="Add label here"
-                        />
-
-                        <TouchableOpacity
-                            style={{
-                                marginRight:25
-                            }}
-                        >
-                            <Text>{this.formatTime(item.timestamp)}</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => deleteTaskItem(taskKey, itemKey)}>
-                            <Ionicons
-                                name="ios-trash"
-                                style={{color: 'black', alignSelf: 'flex-end'}}
-                                size={30}
+                    <View key={itemKey}>
+                        <View style={{padding: 15, flexDirection: 'row', alignItems: 'center'}}>
+                            <CheckBox
+                                containerStyle={{padding: 0}}
+                                checked={item.checked}
+                                checkedColor='black'
+                                onPress={() => toggleCheckbox(taskKey, itemKey)}
                             />
-                        </TouchableOpacity>
+                            <TextInput
+                                style={{
+                                    height: 40,
+                                    borderColor: 'transparent',
+                                    flex: 1,
+                                    marginRight: 15
+                                }}
+                                placeholder="Add label here"
+                            />
+
+                            <TouchableOpacity
+                                style={{
+                                    marginRight:25
+                                }}
+                            >
+                                <Text>{this.formatTime(item.timestamp)}</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => deleteTaskItem(taskKey, itemKey)}>
+                                <Ionicons
+                                    name="ios-trash"
+                                    style={{color: 'black', alignSelf: 'flex-end'}}
+                                    size={30}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <DateTimePicker
+                                testID="dateTimePicker"
+                                timeZoneOffsetInMinutes={0}
+                                value={new Date()}
+                                mode={'time'}
+                                is24Hour={true}
+                                display="default"
+                            />
+                        </View>
                     </View>
                 )}
             </React.Fragment>
