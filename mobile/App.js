@@ -93,6 +93,7 @@ export default class App extends Component {
         });
 
         this.setState({tasks});
+        this.storeData();
     }
 
     handleToggleCheckBox = (taskKey, itemKey) => {
@@ -169,8 +170,6 @@ export default class App extends Component {
 
         this.storeData();
         this.setState({tasks});
-
-        console.log(this.state.tasks);
     }
 
     storeData = async () => {
