@@ -69,16 +69,20 @@ class TaskItemsList extends Component {
                                 />
                             </TouchableOpacity>
                         </View>
-                        <View>
-                            <DateTimePicker
-                                testID={"dateTimePicker-" + itemKey}
-                                timeZoneOffsetInMinutes={0}
-                                value={new Date(item.timestamp * 1000)}
-                                mode={'time'}
-                                is24Hour={true}
-                                display="default"
-                            />
-                        </View>
+                        { item.show ?
+                                <View>
+                                    <DateTimePicker
+                                        testID={"dateTimePicker-" + itemKey}
+                                        timeZoneOffsetInMinutes={0}
+                                        value={new Date(item.timestamp * 1000)}
+                                        mode={'time'}
+                                        is24Hour={true}
+                                        display="default"
+                                    />
+                                </View>
+                            :
+                                <View></View>
+                        }
                     </View>
                 )}
             </React.Fragment>
