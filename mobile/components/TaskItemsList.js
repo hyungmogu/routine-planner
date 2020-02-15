@@ -52,8 +52,12 @@ class TaskItemsList extends Component {
                             placeholder="Add label here"
                         />
 
-                        <TouchableOpacity>
-                            <Text>{this.formatTime(item.time)}</Text>
+                        <TouchableOpacity
+                            style={{
+                                marginRight:25
+                            }}
+                        >
+                            <Text>{this.formatTime(item.timestamp)}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => deleteTaskItem(taskKey, itemKey)}>

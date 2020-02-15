@@ -35,7 +35,10 @@ export default class App extends Component {
     }
 
     handleAddNewTaskItem = (key) => {
-        let newTaskItem = {};
+        let unixTimestamp = parseInt(new Date().getTime() / 1000);
+        let newTaskItem = {
+            timestamp: unixTimestamp
+        };
 
         let tasks = [...this.state.tasks];
 
