@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity,TextInput } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, TextInput, Text } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 import { AppConsumer } from '../components/Context';
 
 class TaskItemsList extends Component {
+
+    formatTime = (unixTimestamp) => {
+        let dateTime = new Date(parseInt(unixTimestamp) * 1000);
+        let hours = dateTime.getHours();
+        let ampm = (hours >= 12) ? "PM" : "AM";
+        let minutes = dateTime.getMinutes();
+
+        if (hours > 12) {
+            hours -= 12;
+        } else if (hours === 0) {
+            hours = 12;
+        }
+
+        return `${hours}:${minutes} ${ampm}`;
+    }
 
     render() {
         let taskKey = this.props.taskKey;
@@ -34,6 +51,11 @@ class TaskItemsList extends Component {
                             }}
                             placeholder="Add label here"
                         />
+
+                        <TouchableOpacity>
+                            <Text>{this.formatTime(item.time)}</Text>
+                        </TouchableOpacity>
+
                         <TouchableOpacity onPress={() => deleteTaskItem(taskKey, itemKey)}>
                             <Ionicons
                                 name="ios-trash"
