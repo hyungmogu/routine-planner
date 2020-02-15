@@ -119,11 +119,15 @@ export default class App extends Component {
             return;
         }
 
+        let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
+        if (notificationId) {
+            Notifications.cancelScheduledNotificationAsync(notificationId);
+        }
+
         tasks[taskKey].items[itemKey]['showPicker'] = false;
         tasks[taskKey].items[itemKey]['timestamp'] = unixTimestamp;
 
-        this.setState({tasks});
-        Notifications.scheduleLocalNotificationAsync({
+        tasks[taskKey].items[itemKey]['notificationId'] = Notifications.scheduleLocalNotificationAsync({
             title: 'Time Management',
             body: item.name || 'Scheduled event',
             ios: {
@@ -133,6 +137,8 @@ export default class App extends Component {
         }, {
             time: unixTimestamp
         })
+
+        this.setState({tasks});
     }
 
     render() {
