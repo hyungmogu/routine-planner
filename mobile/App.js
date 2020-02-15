@@ -14,6 +14,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        this.loadData();
         this.notificationListener = Notifications.addListener(() => {
             Vibration.vibrate(this.vibrationDuration, true);
         });
@@ -21,6 +22,10 @@ export default class App extends Component {
 
     componentWillUnmount() {
         this.notificationListener.remove();
+    }
+
+    loadData = () => {
+
     }
 
     handleAddNewTask = () => {
