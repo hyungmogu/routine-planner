@@ -39,6 +39,15 @@ export default class App extends Component {
         }
     }
 
+    storeData = async () => {
+        try {
+            let json = JSON.stringify(this.state.tasks);
+            await AsyncStorage.setItem('tasks', json)
+        } catch (e) {
+            console.warn('Error occurred while saving data: ' + e);
+        }
+    }
+
     handleAddNewTask = () => {
         let newTask = {
             name: '',
@@ -148,6 +157,7 @@ export default class App extends Component {
             return;
         }
 
+        // clear prior notification
         let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
         if (notificationId) {
             Notifications.cancelScheduledNotificationAsync(notificationId);
@@ -167,6 +177,7 @@ export default class App extends Component {
             time: unixTimestamp
         })
 
+        this.storeData();
         this.setState({tasks});
     }
 
