@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Vibration } from 'react-native';
+
 import { Notifications } from 'expo';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { AppProvider } from './components/Context';
 import AppNavigator from './navigation/AppNavigator';
@@ -24,8 +26,17 @@ export default class App extends Component {
         this.notificationListener.remove();
     }
 
-    loadData = () => {
+    loadData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('tasks')
+            if(value !== null) {
+                tasks = JSON.parse(value);
 
+                this.setState({ tasks });
+            }
+        } catch(e) {
+            return;
+        }
     }
 
     handleAddNewTask = () => {
