@@ -32,6 +32,7 @@ class TaskItemsList extends Component {
         let toggleTimePicker = this.props.appContext.actions.toggleTimePicker;
         let toggleCheckbox = this.props.appContext.actions.toggleCheckBox;
         let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
+        let updateTimestamp = this.props.appContext.actions.updateTimestamp;
 
         return (
             <React.Fragment>
@@ -75,11 +76,11 @@ class TaskItemsList extends Component {
                                 <View>
                                     <DateTimePicker
                                         testID={"dateTimePicker-" + itemKey}
-                                        timeZoneOffsetInMinutes={0}
-                                        value={new Date(item.timestamp * 1000)}
+                                        value={item.timestamp ? new Date(item.timestamp * 1000) : new Date()}
                                         mode={'time'}
                                         is24Hour={true}
                                         display="default"
+                                        onChange={(val) => updateTimestamp(taskKey, itemKey, val)}
                                     />
                                 </View>
                             :

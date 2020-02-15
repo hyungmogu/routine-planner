@@ -105,6 +105,24 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
+    handleUpdateTimestamp = (taskKey, itemKey, value) => {
+
+        let tasks = [...this.state.tasks];
+
+        if (!Array.isArray(tasks[taskKey].items)) {
+            return;
+        }
+
+        if (!tasks[taskKey].items[itemKey]) {
+            return;
+        }
+
+        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(value.nativeEvent.timestamp / 1000);
+
+        this.setState({tasks});
+
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -115,7 +133,8 @@ export default class App extends Component {
                     addNewTaskItem: this.handleAddNewTaskItem,
                     deleteTaskItem: this.handleDeleteTaskItem,
                     toggleCheckBox: this.handleToggleCheckBox,
-                    toggleTimePicker: this.handleToggleTimePicker
+                    toggleTimePicker: this.handleToggleTimePicker,
+                    updateTimestamp: this.handleUpdateTimestamp
                 }
             }}>
                 <AppNavigator/>
