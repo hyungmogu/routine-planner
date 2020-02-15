@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Vibration } from 'react-native';
 
 import { Notifications } from 'expo';
-import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorage } from 'react-native';
 
 import { AppProvider } from './components/Context';
 import AppNavigator from './navigation/AppNavigator';
