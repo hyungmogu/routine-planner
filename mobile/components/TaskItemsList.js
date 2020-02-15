@@ -71,9 +71,9 @@ class TaskItemsList extends Component {
                         </View>
                         <View>
                             <DateTimePicker
-                                testID="dateTimePicker"
+                                testID={"dateTimePicker-" + itemKey}
                                 timeZoneOffsetInMinutes={0}
-                                value={new Date()}
+                                value={new Date(item.timestamp * 1000)}
                                 mode={'time'}
                                 is24Hour={true}
                                 display="default"
