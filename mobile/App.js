@@ -153,12 +153,7 @@ export default class App extends Component {
 
     handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
 
-        if (value.type === 'dismissed') {
-            return;
-        }
-
         let tasks = [...this.state.tasks];
-        let targetTimestamp = value.nativeEvent.timestamp;
 
         if (!Array.isArray(tasks[taskKey].items)) {
             return;
@@ -168,13 +163,17 @@ export default class App extends Component {
             return;
         }
 
+        if (value.type === 'dismissed') {
+            tasks[taskKey].items[itemKey]['showPicker'] = false;
+            return;
+        }
+
+        let targetTimestamp = value.nativeEvent.timestamp;
+
         let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
         if (notificationId) {
             Notifications.cancelScheduledNotificationAsync(notificationId);
         }
-
-        tasks[taskKey].items[itemKey]['showPicker'] = false;
-        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(targetTimestamp / 1000);
 
         let currentUnixTimestamp = new Date().getTime();
         if (targetTimestamp <= currentUnixTimestamp) {
@@ -184,6 +183,8 @@ export default class App extends Component {
 
         let scheduledTimestamp = currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp);
 
+        tasks[taskKey].items[itemKey]['showPicker'] = false;
+        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(targetTimestamp / 1000);
         tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
             title: 'Time Management',
             body: item.name || 'Scheduled event',
