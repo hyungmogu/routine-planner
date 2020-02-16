@@ -8,7 +8,7 @@ class TaskListHeader extends Component {
 
     render() {
         let deleteTask = this.props.appContext.actions.deleteTask;
-        let key = this.props.taskKey;
+        let taskKey = this.props.taskKey;
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
@@ -16,11 +16,12 @@ class TaskListHeader extends Component {
                         style={{fontSize: 20, color: 'white'}}
                         placeholder="Routine Group Name"
                         placeholderTextColor="white"
+                        onChangeText={(text) => updateTaskName(taskKey, text)}
                     ></TextInput>
                 </View>
                 <View>
                     <TouchableOpacity
-                        onPress={() => deleteTask(key)}
+                        onPress={() => deleteTask(taskKey)}
                     >
                         <Ionicons
                             name="ios-trash"

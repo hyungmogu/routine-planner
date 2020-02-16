@@ -36,7 +36,7 @@ class TaskItemsList extends Component {
         let toggleCheckbox = this.props.appContext.actions.toggleCheckBox;
         let deleteTaskItem = this.props.appContext.actions.deleteTaskItem;
         let updateAlarm = this.props.appContext.actions.updateAlarm;
-        let updateTaskItemText = this.props.appContext.actions.updateTaskItemText;
+        let updateTaskItemLabel = this.props.appContext.actions.updateTaskItemLabel;
 
         return (
             <React.Fragment>
@@ -57,7 +57,7 @@ class TaskItemsList extends Component {
                                     marginRight: 15
                                 }}
                                 value={item.label}
-                                onChangeText={(text) => updateTaskItemText(taskKey, itemKey, text)}
+                                onChangeText={(text) => updateTaskItemLabel(taskKey, itemKey, text)}
                                 placeholder="Add label here"
                             />
 
