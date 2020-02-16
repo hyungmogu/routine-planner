@@ -26,7 +26,7 @@ class HomeScreen extends Component {
                         </ScrollView>
                     </KeyboardAvoidingView>
                 </SafeAreaView>
-                <TimePickerModal/>
+                {/* <TimePickerModal/> */}
             </View>
         );
     }
