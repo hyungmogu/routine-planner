@@ -146,6 +146,10 @@ export default class App extends Component {
 
     handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
 
+        if (value.type === 'dismissed') {
+            return;
+        }
+
         let tasks = [...this.state.tasks];
         let targetTimestamp = value.nativeEvent.timestamp;
 
