@@ -12,7 +12,13 @@ export default class App extends Component {
     vibrationDuration = 2000;
 
     state = {
-        tasks: []
+        tasks: [],
+        timePicker: {
+            show: false,
+            taskKey: null,
+            itemKey: null,
+            timestamp: null
+        }
     }
 
     componentDidMount() {
@@ -131,24 +137,15 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
-    handleToggleTimePicker = (taskKey, itemKey) => {
-        let tasks = [...this.state.tasks];
+    handleToggleTimePicker = (taskKey, itemKey, timestamp) => {
+        let timePicker = {
+            show: true,
+            taskKey: taskKey,
+            itemKey: itemKey,
+            timestamp: timestamp
+        };
 
-        if (!Array.isArray(tasks[taskKey].items)) {
-            return;
-        }
-
-        if (!tasks[taskKey].items[itemKey]) {
-            return;
-        }
-
-        if (!tasks[taskKey].items[itemKey]['showPicker']) {
-            tasks[taskKey].items[itemKey]['showPicker'] = false;
-        }
-
-        tasks[taskKey].items[itemKey]['showPicker'] = !tasks[taskKey].items[itemKey]['showPicker'];
-
-        this.setState({tasks});
+        this.setState({timePicker});
     }
 
     handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
@@ -241,6 +238,7 @@ export default class App extends Component {
         return (
             <AppProvider value={{
                 tasks: this.state.tasks,
+                timePicker: this.state.timePicker,
                 actions: {
                     addNewTask: this.handleAddNewTask,
                     deleteTask: this.handleDeleteTask,

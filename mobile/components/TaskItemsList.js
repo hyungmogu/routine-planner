@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { AppConsumer } from '../components/Context';
+import TimePickerModal from '../components/TimePickerModal';
 
 class TaskItemsList extends Component {
 
@@ -62,7 +63,7 @@ class TaskItemsList extends Component {
                             />
 
                             <TouchableOpacity
-                                onPress={() => toggleTimePicker(taskKey, itemKey)}
+                                onPress={() => toggleTimePicker(taskKey, itemKey, item.timestamp)}
                                 style={{
                                     marginRight:25
                                 }}
@@ -78,20 +79,6 @@ class TaskItemsList extends Component {
                                 />
                             </TouchableOpacity>
                         </View>
-                        { item.showPicker ?
-                                <View>
-                                    <DateTimePicker
-                                        testID={"dateTimePicker-" + itemKey}
-                                        value={item.timestamp ? new Date(item.timestamp * 1000) : new Date()}
-                                        mode={'time'}
-                                        is24Hour={true}
-                                        display="default"
-                                        onChange={(val) => updateAlarm(taskKey, itemKey, item, val)}
-                                    />
-                                </View>
-                            :
-                                <View></View>
-                        }
                     </View>
                 )}
             </React.Fragment>

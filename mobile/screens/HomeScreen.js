@@ -11,7 +11,7 @@ class HomeScreen extends Component {
 
     render() {
         let addNewTask = this.props.appContext.actions.addNewTask;
-
+        let showTimePicker = this.props.appContext.timePicker.show;
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.safeViewContainer}>
@@ -26,7 +26,7 @@ class HomeScreen extends Component {
                         </ScrollView>
                     </KeyboardAvoidingView>
                 </SafeAreaView>
-                {/* <TimePickerModal/> */}
+                { showTimePicker ? <TimePickerModal/> : <View></View> }
             </View>
         );
     }
