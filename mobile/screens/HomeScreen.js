@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, View } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
 import TaskAddButton from '../components/TaskAddButton';
@@ -13,10 +13,16 @@ class HomeScreen extends Component {
 
         return (
             <SafeAreaView style={styles.safeViewContainer}>
-                <TaskAddButton onPress={addNewTask}/>
-                <ScrollView style={styles.container}>
-                    <TaskList/>
-                </ScrollView>
+                <KeyboardAvoidingView
+                    style={styles.container}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    enabled
+                >
+                    <TaskAddButton onPress={addNewTask}/>
+                    <ScrollView style={styles.scrollViewContainer}>
+                        <TaskList/>
+                    </ScrollView>
+                </KeyboardAvoidingView>
             </SafeAreaView>
         );
     }
@@ -28,6 +34,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9F6F7'
     },
     container: {
+        flex: 1
+    },
+    scrollViewContainer: {
         marginTop: 15,
         flex: 1
     }
