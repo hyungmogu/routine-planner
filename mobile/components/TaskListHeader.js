@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,7 +12,11 @@ class TaskListHeader extends Component {
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <Text style={{fontSize: 20, color: 'white'}}>Title</Text>
+                    <TextInput
+                        style={{fontSize: 20, color: 'white'}}
+                        placeholder="Routine Group Name"
+                        placeholderTextColor="white"
+                    ></TextInput>
                 </View>
                 <View>
                     <TouchableOpacity
