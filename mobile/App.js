@@ -58,6 +58,13 @@ export default class App extends Component {
 
     handleDeleteTask = (key) => {
         this.setState(prevState => {
+            for (let item of prevState.tasks[key].items) {
+                let notificationId = item['notificationId'];
+                if (notificationId) {
+                    Notifications.cancelScheduledNotificationAsync(notificationId);
+                }
+            }
+
             let filteredItems = prevState.tasks.filter((item, index) => {
                 return index !== key;
             });
