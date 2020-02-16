@@ -8,15 +8,19 @@ class TaskListHeader extends Component {
 
     render() {
         let deleteTask = this.props.appContext.actions.deleteTask;
+        let updateTaskLabel = this.props.appContext.actions.updateTaskLabel;
         let taskKey = this.props.taskKey;
+        let tasks = this.props.appContext.tasks;
+
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
                     <TextInput
+                        value={tasks[taskKey].label}
                         style={{fontSize: 20, color: 'white'}}
                         placeholder="Routine Group Name"
                         placeholderTextColor="white"
-                        onChangeText={(text) => updateTaskName(taskKey, text)}
+                        onChangeText={(text) => updateTaskLabel(taskKey, text)}
                     ></TextInput>
                 </View>
                 <View>

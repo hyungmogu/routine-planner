@@ -225,8 +225,16 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
-    handleUpdateTaskLabel = () => {
+    handleUpdateTaskLabel = (taskKey, text) => {
+        let tasks = [...this.state.tasks];
 
+        if (!tasks[taskKey]) {
+            return;
+        }
+
+        tasks[taskKey]['label'] = text;
+
+        this.setState({tasks});
     }
 
     render() {
