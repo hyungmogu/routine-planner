@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, View } from 'react-native';
 
 import { AppConsumer } from '../components/Context';
 import TaskAddButton from '../components/TaskAddButton';
 
 import TaskList from '../components/TaskList';
+import TimePickerModal from '../components/TimePickerModal';
 
 class HomeScreen extends Component {
 
@@ -12,28 +13,34 @@ class HomeScreen extends Component {
         let addNewTask = this.props.appContext.actions.addNewTask;
 
         return (
-            <SafeAreaView style={styles.safeViewContainer}>
-                <KeyboardAvoidingView
-                    style={styles.container}
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    enabled
-                >
-                    <TaskAddButton onPress={addNewTask}/>
-                    <ScrollView style={styles.scrollViewContainer}>
-                        <TaskList/>
-                    </ScrollView>
-                </KeyboardAvoidingView>
-            </SafeAreaView>
+            <View style={styles.container}>
+                <SafeAreaView style={styles.safeViewContainer}>
+                    <KeyboardAvoidingView
+                        style={styles.contentContainer}
+                        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                        enabled
+                    >
+                        <TaskAddButton onPress={addNewTask}/>
+                        <ScrollView style={styles.scrollViewContainer}>
+                            <TaskList/>
+                        </ScrollView>
+                    </KeyboardAvoidingView>
+                </SafeAreaView>
+                <TimePickerModal/>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     safeViewContainer: {
         flex: 1,
         backgroundColor: '#F9F6F7'
     },
-    container: {
+    contentContainer: {
         flex: 1
     },
     scrollViewContainer: {
