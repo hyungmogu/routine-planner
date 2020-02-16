@@ -88,8 +88,13 @@ export default class App extends Component {
     handleDeleteTaskItem = (taskKey, itemKey) => {
         let tasks = [...this.state.tasks];
 
-        if (!Array.isArray(tasks[taskKey].items)) {
+        if (!Array.isArray(tasks[taskKey].items || !tasks[taskKey].items[itemKey])) {
             return;
+        }
+
+        let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
+        if (notificationId) {
+            Notifications.cancelScheduledNotificationAsync(notificationId);
         }
 
         tasks[taskKey].items = tasks[taskKey].items.filter((item, index) => {
