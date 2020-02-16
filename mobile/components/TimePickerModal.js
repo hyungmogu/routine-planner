@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, View, Modal, Text } from 'react-native';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 class TimePickerModal extends Component {
     render() {
         return (
@@ -11,24 +13,14 @@ class TimePickerModal extends Component {
                     visible={true}
                 >
                     <SafeAreaView style={styles.safeViewContainer}>
-                        <View style={styles.container}>
-                            <View style={{
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    marginBottom: 15
-                                }}
-                            >
-                                <Text style={{
-                                        flex: 1,
-                                        fontWeight: 'bold',
-                                        textAlign: 'center'
-                                    }}
-                                >
-                                    Date Time Picker Modal
-                                </Text>
-                            </View>
-                        </View>
+                        <DateTimePicker
+                            testID={"dateTimePicker-" + itemKey}
+                            value={item.timestamp ? new Date(item.timestamp * 1000) : new Date()}
+                            mode={'time'}
+                            is24Hour={true}
+                            display="default"
+                            onChange={(val) => updateAlarm(taskKey, itemKey, item, val)}
+                        />
                     </SafeAreaView>
                 </Modal>
             </View>
