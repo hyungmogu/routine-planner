@@ -234,6 +234,17 @@ export default class App extends Component {
         this.setState({tasks});
     }
 
+    handleCloseTimePickerModal = () => {
+        this.setState({
+            timePicker: {
+                show: false,
+                taskKey: null,
+                itemKey: null,
+                timestamp: null
+            }
+        })
+    }
+
     render() {
         return (
             <AppProvider value={{
@@ -248,7 +259,8 @@ export default class App extends Component {
                     toggleTimePicker: this.handleToggleTimePicker,
                     updateAlarm: this.handleUpdateAlarm,
                     updateTaskItemLabel: this.handleUpdateTaskItemLabel,
-                    updateTaskLabel: this.handleUpdateTaskLabel
+                    updateTaskLabel: this.handleUpdateTaskLabel,
+                    closeTimePickerModal: this.handleCloseTimePickerModal
                 }
             }}>
                 <AppNavigator/>

@@ -28,7 +28,7 @@ class TimePickerModal extends Component {
         let updateAlarm = this.props.appContext.actions.updateAlarm;
         let taskKey = this.props.appContext.timePicker.taskKey;
         let itemKey = this.props.appContext.timePicker.itemKey;
-        let show = this.props.appContext.timePicker.show;
+        let closeModal = this.props.appContext.actions.closeTimePickerModal;
 
         let {SCREEN_HEIGHT, SCREEN_WIDTH} = Dimensions.get('window');
 
@@ -74,7 +74,7 @@ class TimePickerModal extends Component {
                                     borderWidth: 1,
                                     padding: 15
                                 }}
-
+                                onPress={() => closeModal()}
                             >
                                 <Text style={{color: '#FF971D', textAlign: 'center'}} >Cancel</Text>
                             </TouchableOpacity>
