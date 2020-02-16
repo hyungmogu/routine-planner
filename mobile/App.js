@@ -148,24 +148,13 @@ export default class App extends Component {
         this.setState({timePicker});
     }
 
-    handleUpdateAlarm = async (taskKey, itemKey, item, value) => {
+    handleUpdateAlarm = async (taskKey, itemKey, targetTimestamp) => {
 
         let tasks = [...this.state.tasks];
 
-        if (!Array.isArray(tasks[taskKey].items)) {
+        if (!Array.isArray(tasks[taskKey].items) || !tasks[taskKey].items[itemKey]) {
             return;
         }
-
-        if (!tasks[taskKey].items[itemKey]) {
-            return;
-        }
-
-        if (value.type === 'dismissed') {
-            tasks[taskKey].items[itemKey]['showPicker'] = false;
-            return;
-        }
-
-        let targetTimestamp = value.nativeEvent.timestamp;
 
         let notificationId = tasks[taskKey].items[itemKey]['notificationId'];
         if (notificationId) {
@@ -178,13 +167,14 @@ export default class App extends Component {
             targetTimestamp += day;
         }
 
-        let scheduledTimestamp = currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp);
+        let itemLabel = tasks[taskKey].items[itemKey].name;
+        let scheduledTimestamp = (currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp)) * 1000;
 
         tasks[taskKey].items[itemKey]['showPicker'] = false;
-        tasks[taskKey].items[itemKey]['timestamp'] = parseInt(targetTimestamp / 1000);
+        tasks[taskKey].items[itemKey]['timestamp'] = targetTimestamp;
         tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
             title: 'Time Management',
-            body: item.name || 'Scheduled event',
+            body: itemLabel || 'Scheduled event',
             ios: {
                 sound: true,
                 _displayInForeground: true
@@ -195,6 +185,7 @@ export default class App extends Component {
         });
 
         this.setState({tasks});
+        this.handleCloseTimePickerModal();
     }
 
     storeData = async () => {

@@ -30,6 +30,7 @@ class TimePickerModal extends Component {
         let itemKey = this.props.appContext.timePicker.itemKey;
         let closeModal = this.props.appContext.actions.closeTimePickerModal;
 
+
         let {SCREEN_HEIGHT, SCREEN_WIDTH} = Dimensions.get('window');
 
         return (
@@ -86,6 +87,7 @@ class TimePickerModal extends Component {
                                     backgroundColor: '#FF971D',
                                     padding: 15
                                 }}
+                                onPress={() => updateAlarm(taskKey, itemKey, this.state.timestamp)}
                             >
                                 <Text style={{color: 'white', textAlign: 'center'}}>Select</Text>
                             </TouchableOpacity>
