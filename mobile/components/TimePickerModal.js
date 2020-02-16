@@ -37,7 +37,6 @@ class TimePickerModal extends Component {
                         style={{
                             backgroundColor: 'white',
                             margin: 25,
-                            paddingBottom: 40,
                             borderRadius: 10
                         }}
                     >
@@ -50,6 +49,14 @@ class TimePickerModal extends Component {
                             display="default"
                             onChange={(val) => updateAlarm(taskKey, itemKey, item, val)}
                         />
+                        <View style={{margin: 15, flexDirection: 'row'}}>
+                            <TouchableOpacity style={{borderRadius: 10, flex:1, marginRight: 5, borderColor: '#FF971D', borderWidth: 1, padding: 15}}>
+                                <Text style={{color: '#FF971D', textAlign: 'center'}} >Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{borderRadius: 10, flex:1, marginLeft: 5, backgroundColor: '#FF971D', padding: 15}}>
+                                <Text style={{color: 'white', textAlign: 'center'}}>Select</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
