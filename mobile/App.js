@@ -152,6 +152,10 @@ export default class App extends Component {
 
         let tasks = [...this.state.tasks];
 
+        if (!targetTimestamp) {
+            return;
+        }
+
         if (!Array.isArray(tasks[taskKey].items) || !tasks[taskKey].items[itemKey]) {
             return;
         }

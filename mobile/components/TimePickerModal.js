@@ -103,8 +103,10 @@ class TimePickerModal extends Component {
                         value={this.state.timestamp ? new Date(this.state.timestamp * 1000) : new Date()}
                         mode={'time'}
                         is24Hour={true}
-                        display="default"
-                        onChange={(value) => updateAlarm(taskKey, itemKey, value.nativeEvent.timestamp)}
+                        display="spinner"
+                        onChange={(value) => {
+                            updateAlarm(taskKey, itemKey, value.nativeEvent.timestamp);
+                        }}
                     />
                 }
             </View>
