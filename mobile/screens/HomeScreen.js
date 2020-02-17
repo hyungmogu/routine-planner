@@ -9,6 +9,8 @@ import TimePickerModal from '../components/TimePickerModal';
 
 class HomeScreen extends Component {
 
+    scrollViewRef = React.createRef();
+
     render() {
         let addNewTask = this.props.appContext.actions.addNewTask;
         let showTimePicker = this.props.appContext.timePicker.show;
@@ -20,10 +22,13 @@ class HomeScreen extends Component {
                         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                         enabled
                     >
-                        <TaskAddButton onPress={addNewTask}/>
-                        <ScrollView style={styles.scrollViewContainer}>
+                        <ScrollView
+                            style={styles.scrollViewContainer}
+                            ref={this.scrollViewRef}
+                        >
                             <TaskList/>
                         </ScrollView>
+                        <TaskAddButton onPress={() => addNewTask(this.scrollViewRef)}/>
                     </KeyboardAvoidingView>
                 </SafeAreaView>
                 { showTimePicker ? <TimePickerModal/> : <View></View> }

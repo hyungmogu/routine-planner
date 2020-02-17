@@ -49,7 +49,7 @@ export default class App extends Component {
         }
     }
 
-    handleAddNewTask = () => {
+    handleAddNewTask = (scrollViewRef) => {
         let newTask = {
             name: '',
             items: []
@@ -60,6 +60,8 @@ export default class App extends Component {
                 tasks: [...prevState.tasks, newTask]
             }
         });
+
+        scrollViewRef.current.scrollToEnd({animated: true});
     }
 
     handleDeleteTask = (key) => {
