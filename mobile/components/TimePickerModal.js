@@ -47,7 +47,7 @@ class TimePickerModal extends Component {
             <View>
                 { Platform.OS === 'ios' ?
                     <Modal
-                        animationType="slide"
+                        animationType="fade"
                         transparent={true}
                         visible={true}
                     >
