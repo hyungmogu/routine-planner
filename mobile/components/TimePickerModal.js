@@ -23,9 +23,20 @@ class TimePickerModal extends Component {
         })
     }
 
+    handleAndroidAction = (value, taskKey, itemKey, closeModal, updateAlarm) => {
+        if (!value.nativeEvent.timestamp) {
+            closeModal();
+            return;
+        }
+        let timestamp = parseInt(value.nativeEvent.timestamp / 1000);
+        updateAlarm(taskKey, itemKey, timestamp);
+        closeModal();
+    }
+
     render() {
 
         let updateAlarm = this.props.appContext.actions.updateAlarm;
+        let timestamp = this.props.appContext.timePicker.timestamp
         let taskKey = this.props.appContext.timePicker.taskKey;
         let itemKey = this.props.appContext.timePicker.itemKey;
         let closeModal = this.props.appContext.actions.closeTimePickerModal;
@@ -100,13 +111,11 @@ class TimePickerModal extends Component {
                     <DateTimePicker
                         style={{width:'100%'}}
                         testID={"dateTimePicker-" + itemKey}
-                        value={this.state.timestamp ? new Date(this.state.timestamp * 1000) : new Date()}
+                        value={timestamp ? new Date(timestamp * 1000) : new Date()}
                         mode={'time'}
                         is24Hour={true}
                         display="spinner"
-                        onChange={(value) => {
-                            updateAlarm(taskKey, itemKey, value.nativeEvent.timestamp);
-                        }}
+                        onChange={(value) => this.handleAndroidAction(value, taskKey, itemKey, closeModal, updateAlarm)}
                     />
                 }
             </View>
