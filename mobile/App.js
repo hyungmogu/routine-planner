@@ -174,9 +174,6 @@ export default class App extends Component {
         let itemLabel = tasks[taskKey].items[itemKey].name;
         let scheduledTimestamp = (currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp)) * 1000;
 
-        console.log(scheduledTimestamp);
-        console.log((targetTimestamp - currentUnixTimestamp));
-
         tasks[taskKey].items[itemKey]['showPicker'] = false;
         tasks[taskKey].items[itemKey]['timestamp'] = targetTimestamp;
         tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
