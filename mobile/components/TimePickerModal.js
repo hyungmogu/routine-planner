@@ -17,7 +17,9 @@ class TimePickerModal extends Component {
     }
 
     handleUpdateTimePicker = (timestamp) => {
-        let unixTimestamp = parseInt(timestamp / 1000);
+        let seconds = new Date(timestamp).getSeconds();
+
+        let unixTimestamp = parseInt(timestamp / 1000) - seconds;
         this.setState({
             timestamp: unixTimestamp
         })
@@ -28,7 +30,8 @@ class TimePickerModal extends Component {
             closeModal();
             return;
         }
-        let timestamp = parseInt(value.nativeEvent.timestamp / 1000);
+        let seconds = new Date(value.nativeEvent.timestamp).getSeconds();
+        let timestamp = parseInt(value.nativeEvent.timestamp / 1000) - seconds;
         updateAlarm(taskKey, itemKey, timestamp);
         closeModal();
     }
