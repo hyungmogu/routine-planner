@@ -30,8 +30,12 @@ class TimePickerModal extends Component {
             closeModal();
             return;
         }
+        let temp = new Date(value.nativeEvent.timestamp);
+
         let seconds = new Date(value.nativeEvent.timestamp).getSeconds();
         let timestamp = parseInt(value.nativeEvent.timestamp / 1000) - seconds;
+
+        temp = new Date(timestamp * 1000);
         updateAlarm(taskKey, itemKey, timestamp);
         closeModal();
     }

@@ -151,7 +151,6 @@ export default class App extends Component {
     }
 
     handleUpdateAlarm = async (taskKey, itemKey, targetTimestamp) => {
-
         let tasks = [...this.state.tasks];
 
         if (!targetTimestamp) {
@@ -167,11 +166,13 @@ export default class App extends Component {
             Notifications.cancelScheduledNotificationAsync(notificationId);
         }
 
-        let currentUnixTimestamp = parseInt(new Date().getTime() / 1000);
+        let currentDate = new Date();
+        let currentUnixTimestamp = parseInt(currentDate.getTime() / 1000) - currentDate.getSeconds();
         if (targetTimestamp <= currentUnixTimestamp) {
             let day = 24 * 60 * 60;
             targetTimestamp += day;
         }
+
 
         let itemLabel = tasks[taskKey].items[itemKey].name;
         let scheduledTimestamp = (currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp)) * 1000;
