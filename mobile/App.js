@@ -165,7 +165,7 @@ export default class App extends Component {
             Notifications.cancelScheduledNotificationAsync(notificationId);
         }
 
-        let currentUnixTimestamp = new Date().getTime();
+        let currentUnixTimestamp = parseInt(new Date().getTime() / 1000);
         if (targetTimestamp <= currentUnixTimestamp) {
             let day = 24 * 60 * 60;
             targetTimestamp += day;
@@ -173,7 +173,8 @@ export default class App extends Component {
 
         let itemLabel = tasks[taskKey].items[itemKey].name;
         let scheduledTimestamp = (currentUnixTimestamp + (targetTimestamp - currentUnixTimestamp)) * 1000;
-
+        console.log(scheduledTimestamp);
+        console.log((targetTimestamp - currentUnixTimestamp));
         tasks[taskKey].items[itemKey]['showPicker'] = false;
         tasks[taskKey].items[itemKey]['timestamp'] = targetTimestamp;
         tasks[taskKey].items[itemKey]['notificationId'] = await Notifications.scheduleLocalNotificationAsync({
